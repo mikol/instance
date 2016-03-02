@@ -266,6 +266,8 @@ function () {
    * @return {Object} The prototype of `object`.
    *
    * @throws {TypeError} If `object` is `null` or `undefined`.
+   *
+   * @see [Object.getPrototypeOf()](https://goo.gl/SkodpR)
    */
   var getPrototypeOf = Object.getPrototypeOf || (PROTO
     ? function (object) {
@@ -282,8 +284,10 @@ function () {
    * @param {Object} prototype - The new prototype for `object`.
    *
    * @throws {TypeError} If `object` is `null` or `undefined`.
+   *
+   * @see [Object.setPrototypeOf()](https://goo.gl/U8zoqg)
    */
-  var setPrototypeOf = Object.getPrototypeOf || (PROTO
+  var setPrototypeOf = Object.setPrototypeOf || (PROTO
     ? function (object, prototype) {
       return object.__proto__ = prototype;
     }
