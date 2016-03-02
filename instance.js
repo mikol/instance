@@ -1,6 +1,6 @@
 /**
  * Provides shims for `Object.*()` static methods like `Object.assign()`,
- * `Object.create()`, etc. `instance.*()` methods generally equivalent to
+ * `Object.create()`, etc. `instance.*()` methods are generally equivalent to
  * `Object.*()` methods regardless of the runtime.
  *
  * @module instance
