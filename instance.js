@@ -107,7 +107,7 @@ function () {
   var create = function (prototype, descriptors) {
     var object;
     if (Object.create) {
-      object = Object.create(prototype);
+      return Object.create(prototype, descriptors);
     } else {
       PrototypalIntermediate.prototype = prototype;
       object = new PrototypalIntermediate();
