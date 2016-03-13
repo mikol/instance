@@ -17,12 +17,6 @@ var dependencies = [];
 
 function factory() {
   /**
-   * @const {undefined}
-   * @private
-   */
-  var U;
-
-  /**
    * A flag determining if the runtime implements `Object.defineProperty()`
    * correctly or if it throws errors when applied to native objects.
    *
@@ -146,7 +140,7 @@ function factory() {
       var source = arguments[x];
 
       for (var key in source) {
-        if (target[key] === U) {
+        if (target[key] === undefined) {
           target[key] = source[key];
         }
       }
@@ -213,8 +207,7 @@ function factory() {
    * @see [Object.defineProperty()](https://goo.gl/4WDHDQ)
    */
   function defineProperty(object, name, descriptor) {
-    if (descriptor && typeof descriptor === 'object' &&
-        ('value' in descriptor)) {
+    if (typeof descriptor === 'object' && isDescriptor(descriptor)) {
       return property(object, name, descriptor);
     }
 
@@ -240,6 +233,22 @@ function factory() {
         };
       }
     };
+
+  /**
+   * Determines if `v` is a plausible property descriptor.
+   *
+   * @param {*} v - The value to test.
+   *
+   * @return {!boolean} `true` if `v` defines any of the descriptor properties
+   *     `'value'`, `'get'`, `'set'`, `'writable'`, `'configurable'`, or
+   *     `'enumerable'`; `false` otherwise.
+   *
+   * @private
+   */
+  function isDescriptor(v) {
+    return v != null && 'value' in v || 'get' in v || 'set' in v ||
+        'writable' in v || 'configurable' in v || 'enumerable' in v;
+  }
 
   /**
    * Shim for `Object.getOwnPropertyNames()`.
