@@ -140,8 +140,8 @@ function factory() {
       var source = arguments[x];
 
       for (var key in source) {
-        if (target[key] === undefined) {
-          target[key] = source[key];
+        if (object[key] === undefined) {
+          object[key] = source[key];
         }
       }
     }
